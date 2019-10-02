@@ -1,0 +1,43 @@
+{
+    "result" : {
+        "source" : "agent",
+        "action" : "",
+        "score" : 1,
+        "resolvedQuery" : "Hi ",
+        "fulfillment" : {
+            "speech" : "",
+            "messages" : [
+                {
+                    "type" : 4,
+                    "payload" : {
+                        "defaultReply" : "Hi Hi"
+                    }
+                }
+            ]
+        },
+        "actionIncomplete" : false,
+        "contexts" : [
+            
+        ],
+        "metadata" : {
+            "isFallbackIntent" : "false",
+            "intentName" : "intent-repeat-twice",
+            "webhookUsed" : "false",
+            "webhookForSlotFillingUsed" : "false",
+            "intentId" : "1c87849d-6012-4a74-9c64-9b38f55c32a1"
+        },
+        "parameters" : {
+            "question" : "Hi"
+        }
+    },
+    "id" : "864a8d1c-d45c-40e6-b828-1835529bc819",
+    "timestamp" : "2019-09-22T17:51:53.244Z",
+    "lang" : "en",
+    "status" : {
+        "errorType" : "success",
+        "code" : 200
+    },
+    "sessionId" : "12345678910"
+}
+
+
