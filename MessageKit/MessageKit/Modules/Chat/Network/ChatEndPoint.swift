@@ -17,16 +17,16 @@ extension ChatEndPoint: EndPointType {
     var path: String {
         switch self {
         case .sendMessage:
-            return "query"
+            return "v1/chat/completions"
         }
     }
     
     var baseURL: URL {
-        return URL(string: "https://api.dialogflow.com/v1/")!
+        return URL(string: "https://api.openai.com")!
     }
     
     var headers: HTTPHeaders? {
-        return ["Authorization" : "Bearer ea840b32ce0d4f28b162d62d8808bed4",
+        return ["Authorization" : "Bearer <your-open-ai-api-key>",
                 "Content-Type"  : "application/json"]
     }
     

@@ -66,6 +66,8 @@
 		F9232D65233C56D9005B6C2F /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F922A69B2337975B00CB35B5 /* Chat.swift */; };
 		F9232D67233C5BC9005B6C2F /* ChatViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9232D66233C5BC9005B6C2F /* ChatViewTests.swift */; };
 		F9232D69233F6E33005B6C2F /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9232D68233F6E33005B6C2F /* UIImageView+Extension.swift */; };
+		F926BBB629FA7CF300859629 /* screen-shot-1.png in Resources */ = {isa = PBXBuildFile; fileRef = F926BBB529FA7CF300859629 /* screen-shot-1.png */; };
+		F926BBB829FA7D0200859629 /* screen-shot-2.png in Resources */ = {isa = PBXBuildFile; fileRef = F926BBB729FA7D0200859629 /* screen-shot-2.png */; };
 		F93BA97B2344764B00B4B622 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93BA9782344764B00B4B622 /* ParameterEncoding.swift */; };
 		F93BA97C2344764B00B4B622 /* URLParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93BA9792344764B00B4B622 /* URLParameterEncoding.swift */; };
 		F93BA97D2344764B00B4B622 /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93BA97A2344764B00B4B622 /* JSONParameterEncoder.swift */; };
@@ -134,6 +136,8 @@
 		F9232D4C233C4F99005B6C2F /* HomeViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewTests.swift; sourceTree = "<group>"; };
 		F9232D66233C5BC9005B6C2F /* ChatViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewTests.swift; sourceTree = "<group>"; };
 		F9232D68233F6E33005B6C2F /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		F926BBB529FA7CF300859629 /* screen-shot-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screen-shot-1.png"; sourceTree = "<group>"; };
+		F926BBB729FA7D0200859629 /* screen-shot-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screen-shot-2.png"; sourceTree = "<group>"; };
 		F93BA9782344764B00B4B622 /* ParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
 		F93BA9792344764B00B4B622 /* URLParameterEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParameterEncoding.swift; sourceTree = "<group>"; };
 		F93BA97A2344764B00B4B622 /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
@@ -286,6 +290,7 @@
 		F922A6502336027200CB35B5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F926BBB429FA7CD900859629 /* Screenshots */,
 				F922A61A2335F3A200CB35B5 /* Info.plist */,
 				F922A6152335F3A200CB35B5 /* Assets.xcassets */,
 				F922A6172335F3A200CB35B5 /* LaunchScreen.storyboard */,
@@ -392,6 +397,15 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		F926BBB429FA7CD900859629 /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				F926BBB529FA7CF300859629 /* screen-shot-1.png */,
+				F926BBB729FA7D0200859629 /* screen-shot-2.png */,
+			);
+			path = Screenshots;
+			sourceTree = "<group>";
+		};
 		F93BA9772344764B00B4B622 /* Encoding */ = {
 			isa = PBXGroup;
 			children = (
@@ -465,7 +479,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1030;
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1420;
 				ORGANIZATIONNAME = self;
 				TargetAttributes = {
 					F922A60A2335F3A100CB35B5 = {
@@ -507,6 +521,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F922A68B233696C000CB35B5 /* userList.json in Resources */,
+				F926BBB629FA7CF300859629 /* screen-shot-1.png in Resources */,
+				F926BBB829FA7D0200859629 /* screen-shot-2.png in Resources */,
 				F922A65C2336033400CB35B5 /* AppTheme.plist in Resources */,
 				F922A6192335F3A200CB35B5 /* LaunchScreen.storyboard in Resources */,
 				F922A6A02337E79500CB35B5 /* sendMessage.json in Resources */,
@@ -662,6 +678,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -687,7 +704,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -723,6 +740,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -742,7 +760,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -759,6 +777,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4L453G6266;
 				INFOPLIST_FILE = MessageKit/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -777,6 +796,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4L453G6266;
 				INFOPLIST_FILE = MessageKit/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

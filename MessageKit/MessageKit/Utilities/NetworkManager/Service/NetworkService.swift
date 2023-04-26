@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol NetworkServiceProtocol: class {
+protocol NetworkServiceProtocol: AnyObject {
     associatedtype EndPoint: EndPointType
     
     func execute<T:Decodable>(responseClassType:T.Type, completion: @escaping (Result<T, Error>) -> Void)

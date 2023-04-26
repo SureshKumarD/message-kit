@@ -35,13 +35,14 @@ final class UserCell: BaseCell {
         return label
     }()
     
-    private let disclosureLabel : UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = String(utf8String: "\u{276F}")
-        label.textAlignment = .right
-        label.textColor = UIColor.lightGray
-        return label
+    private let disclosureImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = UIView.ContentMode.scaleAspectFit
+        imageView.layer.cornerRadius = 3.0
+        imageView.image = UIImage(systemName: "chevron.right")?.withRenderingMode(.alwaysOriginal).withTintColor(.black)
+        
+        return imageView
     }()
     
     private let separatorView : UIView = {
@@ -69,14 +70,14 @@ final class UserCell: BaseCell {
         containerView.addSubview(userImageView)
         userImageView.pinToLeft(to: containerView, top: PADDING/2, left: PADDING, bottom: PADDING/2, width: PADDING*3)
         
-        containerView.addSubview(disclosureLabel)
-        disclosureLabel.pinToRight(to: containerView, top: PADDING, bottom: PADDING, right: PADDING, width: PADDING*3)
+        containerView.addSubview(disclosureImageView)
+        disclosureImageView.pinToRight(to: containerView, top: PADDING, bottom: PADDING, right: PADDING, width: PADDING*3)
         
         containerView.addSubview(userNameLabel)
         userNameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: PADDING/2.0).isActive = true
         userNameLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -PADDING/2.0).isActive = true
         userNameLabel.leadingAnchor.constraint(equalTo: userImageView.trailingAnchor, constant:  PADDING/2.0).isActive = true
-        userNameLabel.trailingAnchor.constraint(equalTo: disclosureLabel.leadingAnchor, constant: -PADDING/2.0).isActive = true
+        userNameLabel.trailingAnchor.constraint(equalTo: disclosureImageView.leadingAnchor, constant: -PADDING/2.0).isActive = true
         userNameLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
         
         

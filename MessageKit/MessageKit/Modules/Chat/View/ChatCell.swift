@@ -56,8 +56,8 @@ extension ChatCell {
 
     //ConfigureCell
     func configure(chat: Chat?, estimatedSize: CGSize, screenWidth: CGFloat) {
-        messageTextView.text = chat?.payload?.chatMessage ?? ""
-        if chat?.isReceiver == false {
+        messageTextView.text = chat?.choices?.first?.message?.content ?? ""
+        if chat?.isReceived == false {
             bubbleImageView.image = rightBubbleImage
             messageTextView.frame = CGRect(x: screenWidth - estimatedSize.width - 32 - 32, y: 32, width: estimatedSize.width + 32, height: estimatedSize.height + 16)
             bubbleImageView.frame = CGRect(x: screenWidth - estimatedSize.width - 32 - 32 - 16, y: 16, width: estimatedSize.width + 32 + 32, height: estimatedSize.height + 16 + 32)

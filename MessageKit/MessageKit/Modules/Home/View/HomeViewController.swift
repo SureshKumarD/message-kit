@@ -41,7 +41,9 @@ final class HomeViewController: BaseController {
     
     func setupViews() {
         
-        self.navigationController?.navigationBar.isTranslucent = false
+
+        UINavigationBar.appearance().backgroundColor = .white
+        UINavigationBar.appearance().barTintColor = .black
         self.view.backgroundColor = UIColor.white
         
         self.view.addSubview(containerView)

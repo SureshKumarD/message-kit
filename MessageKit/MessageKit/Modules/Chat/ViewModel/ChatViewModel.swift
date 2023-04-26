@@ -45,11 +45,12 @@ final class ChatViewModel: BaseViewModel {
 extension ChatViewModel {
     
     func sendMessage(message: String) {
-        let params = ["lang"      : "en",
-                      "query"     : message,
-                      "sessionId" : UIDevice.current.identifierForVendor!.uuidString,
-                      "timeZone"  : "Asia/Kolkata",
-                      "v" : "20170712"]
+       
+        
+        let params = [
+            "model": "gpt-3.5-turbo",
+            "messages": [["role": "user", "content": message]]
+        ] as [String : Any]
         
         
 //       self.viewState.value = .Loading
@@ -72,13 +73,17 @@ extension ChatViewModel {
     }
     
     func conversation(message: String) {
-        let chatMessage = Chat()
-        let payLoad     = ChatPayload()
-        payLoad.chatMessage = message
-        chatMessage.payload = payLoad
-        chatMessage.isReceiver = false
+        let chatMessage = Chat(isReceived: false)
+        let choice = Choice()
+        let messageObject = Message(content: message, role: "user")
+        messageObject.content = message
+        messageObject.role = "user"
+        choice.message = messageObject
+        
+        
         self.dateFormatter.dateFormat = dateFormat1
-        chatMessage.timeStampString = self.dateFormatter.string(from: Date())
+        chatMessage.created =  Date().timeIntervalSince1970 // self.dateFormatter.string(from: Date())
+        chatMessage.choices = [choice]
         self.messages.append(chatMessage)
     }
     

@@ -17,12 +17,16 @@ enum ViewState {
 final class Spinner {
     
     static var spinner: UIActivityIndicatorView?
-    static var style: UIActivityIndicatorView.Style = .whiteLarge
+    static var style: UIActivityIndicatorView.Style = UIActivityIndicatorView.Style.large
     static var baseBackColor = UIColor.white
     static var baseColor = UIColor.black
     
     static func show(style: UIActivityIndicatorView.Style = style, backColor: UIColor = baseBackColor, baseColor: UIColor = baseColor) {
-        if spinner == nil, let window = UIApplication.shared.keyWindow {
+        if spinner == nil, let window = UIApplication.shared.connectedScenes
+            .filter({$0.activationState == .foregroundActive})
+            .compactMap({$0 as? UIWindowScene})
+            .first?.windows
+            .filter({$0.isKeyWindow}).first {
             let frame = UIScreen.main.bounds
             spinner = UIActivityIndicatorView(frame: frame)
             spinner!.backgroundColor = backColor
@@ -94,7 +98,7 @@ class BaseController: UIViewController {
             let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
             let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
             let animationCurve:UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
-            let statusBarHeight = UIApplication.shared.statusBarFrame.height
+            let statusBarHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
             let navigationBarHeight = self.navigationController?.navigationBar.frame.size.height ?? 0
             let topSectionHeight = statusBarHeight + navigationBarHeight
             if endFrameY >= UIScreen.main.bounds.size.height {

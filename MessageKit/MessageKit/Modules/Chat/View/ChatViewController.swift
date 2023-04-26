@@ -92,25 +92,37 @@ extension ChatViewController {
     func setupViews() {
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationController?.navigationBar.isTranslucent = false
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            navigationController?.navigationBar.standardAppearance = appearance;
+            navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+        }
+
         self.view.backgroundColor = .white
         self.view.addSubview(containerView)
         containerView.alignEdges(to: self.view)
         
         containerView.addSubview(footerView)
-        footerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
-        footerView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
-        footerView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
-        
+        NSLayoutConstraint.activate([
+            footerView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            footerView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            footerView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
+        ])
+      
         footerViewHeightConstraint = footerView.heightAnchor.constraint(equalToConstant: footerViewDefaultHeight)
         footerViewHeightConstraint?.isActive = true
        
         
         //CollectionView
         containerView.addSubview(collectionView)
-        collectionView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: footerView.topAnchor, constant: 0).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0).isActive = true
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0),
+            collectionView.bottomAnchor.constraint(equalTo: footerView.topAnchor, constant: 0),
+            collectionView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 0),
+            collectionView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 0)
+        ])
+       
        
         collectionView.allowsSelection = false
         collectionView.contentInset = UIEdgeInsets(top: 2*PADDING, left: 0, bottom: 2*PADDING, right: 0)
@@ -122,20 +134,21 @@ extension ChatViewController {
     
         //FooterView
         footerView.addSubview(sendButton)
-        sendButton.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: -PADDING/2).isActive = true
-
         footerView.addSubview(textView)
-        textView.topAnchor.constraint(equalTo: footerView.topAnchor, constant: PADDING).isActive = true
-        textView.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: PADDING).isActive = true
-        textView.bottomAnchor.constraint(equalTo: footerView.bottomAnchor, constant: -2*PADDING).isActive = true
-        textView.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: PADDING/2).isActive = true
+        NSLayoutConstraint.activate([
+            sendButton.trailingAnchor.constraint(equalTo: footerView.trailingAnchor, constant: -PADDING/2),
+            textView.topAnchor.constraint(equalTo: footerView.topAnchor, constant: PADDING),
+            textView.leadingAnchor.constraint(equalTo: footerView.leadingAnchor, constant: PADDING),
+            textView.bottomAnchor.constraint(equalTo: footerView.bottomAnchor, constant: -2*PADDING),
+            textView.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: PADDING/2),
+            sendButton.centerYAnchor.constraint(equalTo: textView.centerYAnchor)
+            
+        ])
+        
         textView.delegate = self
         textView.text = ""
          _ = textView(textView, shouldChangeTextIn: NSRange(location: 0, length: 0), replacementText: "")
-        sendButton.centerYAnchor.constraint(equalTo: textView.centerYAnchor).isActive = true
-        
-      
-        
+       
         self.setViewStateBinding(viewModel: self.viewModel)
         self.setSendButtonBinding()
     }
@@ -163,7 +176,7 @@ extension ChatViewController : UICollectionViewDataSource, UICollectionViewDeleg
         let chatCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ChatCell.self), for: indexPath) as! ChatCell
         let chat = viewModel?.getMessages()[indexPath.row]
         
-        let estimatedSize = self.viewModel?.getSize(for: chat?.payload?.chatMessage, defaultSize: CGSize(width: 250, height: CGFloat.greatestFiniteMagnitude), font: ChatViewModel.messageFont) ?? CGSize.zero
+        let estimatedSize = self.viewModel?.getSize(for: chat?.choices?.first?.message?.content, defaultSize: CGSize(width: 250, height: CGFloat.greatestFiniteMagnitude), font: ChatViewModel.messageFont) ?? CGSize.zero
         chatCell.configure(chat: chat, estimatedSize: estimatedSize, screenWidth: collectionView.frame.size.width)
         
         return chatCell
@@ -173,7 +186,7 @@ extension ChatViewController : UICollectionViewDataSource, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let message = viewModel?.getMessages()[indexPath.row]
 
-        let estimatedSize = self.viewModel?.getSize(for: message?.payload?.chatMessage, defaultSize: CGSize(width: 250, height: CGFloat.greatestFiniteMagnitude), font: ChatViewModel.messageFont) ?? CGSize.zero
+        let estimatedSize = self.viewModel?.getSize(for: message?.choices?.first?.message?.content, defaultSize: CGSize(width: 250, height: CGFloat.greatestFiniteMagnitude), font: ChatViewModel.messageFont) ?? CGSize.zero
         return CGSize(width: collectionView.frame.size.width, height: estimatedSize.height + 32 + 16)
     }
 
